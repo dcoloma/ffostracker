@@ -1,0 +1,7 @@
+{
+  "name": "FFOSTracker",
+  "description": "Firefox OS Tracker",
+  "launch_path": "ffostracker/home.html",
+  "appcache_path": "ffostracker/application.appcache",
+   "icons": { "128": "ffostracker/style/icons/firefox-128.png"}
+}

@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2, 
+  "name": "FFOSTracker",
+  "version": "10",
+  "minimum_chrome_version": "31",
+   "app": {
+    "urls": [
+      "http://dcoloma.github.io/ffostracker/" 
+    ],
+    "launch": {
+      "web_url": "http://dcoloma.github.io/ffostracker/home.html"
+    }
+   },
+   "offline_enabled": true,
+   "icons": {"128": "style/icons/firefox-128.png" }
+}
