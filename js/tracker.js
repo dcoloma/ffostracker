@@ -3,7 +3,7 @@ var versionNumbers = ["1_3", "1_4", "1_5"];
 var versionNames = ["stable", "develop", "plan"];
 var versionCodes = ["1.3", "1.4", "1.5"];
 var keys = ["StableVersion", "DevVersion", "PlanVersion"];
-var colors = ["blue", "pink", "green"];
+var colors = ["blue", "red", "green"];
 var hostedApp = true;
 
 // Bugzilla base links
@@ -15,7 +15,7 @@ baseLinkAllBlockers = "https://bugzilla.mozilla.org/buglist.cgi?bug_status=UNCON
                       "bug_status=REOPENED&f1=cf_blocking_b2g&o1=equals&query_format=advanced&v1="
 var links = new Array (3);
 for (var i = 0; i < 3; i++) 
-    links[i] = new Array(7);
+    links[i] = new Array(10);
 
 // Page Areas, index plus one per version handled
 var regions = ["index"];
@@ -24,19 +24,22 @@ regions = regions.concat(versionNames);
 // Firebase base URL and nodes that contain Bug info
 var baseURL = "https://owd.firebaseio.com/";
 var nodes = ["UserStories/StableVersion/P1/", "UserStories/StableVersion/P2/", "UserStories/DevVersion/P1/", "UserStories/DevVersion/P2/", 
-             "UserStories/PlanVersion/P1/", "UserStories/PlanVersion/P2/", "blockers/StableVersion/", "blockers/DevVersion/", "blockers/PlanVersion/"];
+             "UserStories/PlanVersion/P1/", "UserStories/PlanVersion/P2/", "blockers/StableVersion/", "blockers/DevVersion/", "blockers/PlanVersion/", "noms/StableVersion/", "noms/DevVersion/", "noms/PlanVersion/"];
 var manifestUrl = 'http://dcoloma.github.io/tef-tracker/dashboard/manifest.webapp';
   
 // Boxes Titles
-names = ["P1 Open US", "P2 Open US", "P1 Closed US", "P2 Closed US", "Total Blockers", "Gaia Blockers", "Platform Blockers"];
+names = ["P1 Open US", "P2 Open US", "P1 Closed US", "P2 Closed US", "Total Blockers", "Gaia Blockers", "Platform Blockers", "Total Noms", "Gaia Noms", "Platform Noms"];
 
 // List with DOM Nodes that show Bug Information. These are used also for local storage keys to work offline 
 ids = [["UserStories/StableVersion/P1/OPEN", "UserStories/StableVersion/P2/OPEN", "UserStories/StableVersion/P1/CLOSED",
-             "UserStories/StableVersion/P2/CLOSED", "blockers/StableVersion/all", "blockers/StableVersion/gaiaAll", "blockers/StableVersion/platform"],
+             "UserStories/StableVersion/P2/CLOSED", "blockers/StableVersion/all", "blockers/StableVersion/gaiaAll", "blockers/StableVersion/platform",
+             "noms/StableVersion/all", "noms/StableVersion/gaiaAll", "noms/StableVersion/platform"],
        ["UserStories/DevVersion/P1/OPEN", "UserStories/DevVersion/P2/OPEN", "UserStories/DevVersion/P1/CLOSED", 
-             "UserStories/DevVersion/P2/CLOSED", "blockers/DevVersion/all", "blockers/DevVersion/gaiaAll", "blockers/DevVersion/platform"],
+             "UserStories/DevVersion/P2/CLOSED", "blockers/DevVersion/all", "blockers/DevVersion/gaiaAll", "blockers/DevVersion/platform",
+              "noms/DevVersion/all", "noms/DevVersion/gaiaAll", "noms/DevVersion/platform"],
        ["UserStories/PlanVersion/P1/OPEN", "UserStories/PlanVersion/P2/OPEN", "UserStories/PlanVersion/P1/CLOSED", 
-             "UserStories/PlanVersion/P2/CLOSED", "blockers/PlanVersion/all", "blockers/PlanVersion/gaiaAll", "blockers/PlanVersion/platform"]];
+             "UserStories/PlanVersion/P2/CLOSED", "blockers/PlanVersion/all", "blockers/PlanVersion/gaiaAll", "blockers/PlanVersion/platform",
+             "noms/PlanVersion/all", "noms/PlanVersion/gaiaAll", "noms/PlanVersion/platform"]];
 
 $(window).ready(function() {
   document.getElementById("homebutton").onclick = makeShowElementCallback("index");
@@ -230,21 +233,30 @@ function createVersionTiles(version, tag, anchors, identities, names, color)
   wrapper.setAttribute("align", "center");
   wrapper.setAttribute("id", tag);
 
-  broken = false;
+  brokenBlockers = false;
+  brokenNoms = false;
 
   content = "<div class='page-region-content'>";
   for (var x in identities)
   {
-    if ((identities[x].substring(0, 8) == "blockers") && (!broken))
+    if ((identities[x].substring(0, 8) == "blockers") && (!brokenBlockers))
     {
       content+="<br>";
-      broken = true;
+      brokenBlockers = true;
+    }  
+
+    if ((identities[x].substring(0, 4) == "noms") && (!brokenNoms))
+    {
+      content+="<br>";
+      brokenNoms = true;
     }  
 
     content+= "<a href='" +  anchors[x]  + "' target='_blank'>";
     content+= "<div class='tile ";
     if (identities[x].substring(0, 8) == "blockers")
      content += "bg-color-" + color + "Dark icon'><p class='check'>" + names[x] +"</p>";
+    else if (identities[x].substring(0, 4) == "noms")
+     content += "bg-color-" + color + "Fxos icon'><p class='check'>" + names[x] +"</p>";
     else
      content += "bg-color-" + color + " icon'><p class='check'>" + names[x] + "</p>";
     content+= "<div class='tile-content' id='" + identities[x] + "'></div>";
@@ -269,10 +281,10 @@ function configure()
     nodes[i] = nodes[i].split('PlanVersion').join(versionNumbers[2]);
   }
 
-  baseURLs = [baseLinkOpenUS, baseLinkOpenUS, baseLinkClosedUS, baseLinkClosedUS, baseLinkAllBlockers, baseLinkAllBlockers, baseLinkAllBlockers]
-  prefixURLs= ["%3Ap1", "%3Ap2", "%3Ap1", "%3Ap2", "%2B", "%2B&v2=Gaia&o2=anywords&f2=component", "%2B&v2=Gaia&o2=nowords&f2=component"]
+  baseURLs = [baseLinkOpenUS, baseLinkOpenUS, baseLinkClosedUS, baseLinkClosedUS, baseLinkAllBlockers, baseLinkAllBlockers, baseLinkAllBlockers, baseLinkAllBlockers, baseLinkAllBlockers, baseLinkAllBlockers]
+  prefixURLs= ["%3Ap1", "%3Ap2", "%3Ap1", "%3Ap2", "%2B", "%2B&v2=Gaia&o2=anywords&f2=component", "%2B&v2=Gaia&o2=nowords&f2=component", "%3F", "%3F&v2=Gaia&o2=anywords&f2=component", "%3F&v2=Gaia&o2=nowords&f2=component"]
   for (i=0; i<3; i++)
-    for (j=0; j<7; j++)
+    for (j=0; j<10; j++)
       links[i][j] = baseURLs[j]+versionCodes[i]+prefixURLs[j];
 }
 
