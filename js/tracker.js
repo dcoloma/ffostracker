@@ -1,7 +1,7 @@
 // Configuration Params to make this app easy to be updated to different FFOS versions
-var versionNumbers = ["1_2", "1_3", "1_4"];
+var versionNumbers = ["1_3", "1_4", "1_5"];
 var versionNames = ["stable", "develop", "plan"];
-var versionCodes = ["koi", "1.3", "1.4"];
+var versionCodes = ["1.3", "1.4", "1.5"];
 var keys = ["StableVersion", "DevVersion", "PlanVersion"];
 var colors = ["blue", "pink", "green"];
 var hostedApp = true;
@@ -32,11 +32,11 @@ names = ["P1 Open US", "P2 Open US", "P1 Closed US", "P2 Closed US", "Total Bloc
 
 // List with DOM Nodes that show Bug Information. These are used also for local storage keys to work offline 
 ids = [["UserStories/StableVersion/P1/OPEN", "UserStories/StableVersion/P2/OPEN", "UserStories/StableVersion/P1/CLOSED",
-             "UserStories/StableVersion/P2/CLOSED", "blockers/StableVersion/all", "blockers/StableVersion/Gaia", "blockers/StableVersion/platform"],
+             "UserStories/StableVersion/P2/CLOSED", "blockers/StableVersion/all", "blockers/StableVersion/gaiaAll", "blockers/StableVersion/platform"],
        ["UserStories/DevVersion/P1/OPEN", "UserStories/DevVersion/P2/OPEN", "UserStories/DevVersion/P1/CLOSED", 
-             "UserStories/DevVersion/P2/CLOSED", "blockers/DevVersion/all", "blockers/DevVersion/Gaia", "blockers/DevVersion/platform"],
+             "UserStories/DevVersion/P2/CLOSED", "blockers/DevVersion/all", "blockers/DevVersion/gaiaAll", "blockers/DevVersion/platform"],
        ["UserStories/PlanVersion/P1/OPEN", "UserStories/PlanVersion/P2/OPEN", "UserStories/PlanVersion/P1/CLOSED", 
-             "UserStories/PlanVersion/P2/CLOSED", "blockers/PlanVersion/all", "blockers/PlanVersion/Gaia", "blockers/PlanVersion/platform"]];
+             "UserStories/PlanVersion/P2/CLOSED", "blockers/PlanVersion/all", "blockers/PlanVersion/gaiaAll", "blockers/PlanVersion/platform"]];
 
 $(window).ready(function() {
   document.getElementById("homebutton").onclick = makeShowElementCallback("index");
