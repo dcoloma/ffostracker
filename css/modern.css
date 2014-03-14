@@ -23,6 +23,18 @@ section,
 summary {
   display: block;
 }
+
+.viewcol {display: table-cell;}
+.hidecol {display: none;}
+
+/*.components {display: none;}
+.noms-1_3 {display: none; }
+.blockers-1_3 {display: none; }
+.noms-1_4 {display: none; }
+.blockers-1_4 {display: none; }
+.noms-1_5 {display: none; }
+.blockers-1_5 {display: none; }*/
+
 /*
  * Corrects inline-block display not defined in IE6/7/8/9 & FF3
  */
@@ -3525,9 +3537,10 @@ a.shortcut .label {
  *
  */
 table {
-  width: 100%;
+  width: 90%;
   border-collapse: separate;
   margin: 0 0 20px;
+  table-layout: fixed;
 }
 table thead tr th,
 table thead tr td {
@@ -3542,12 +3555,13 @@ table thead tr td {
   border-top: 1px transparent solid;
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
-  font-size: 11pt;
+  font-size: 0.7rem;
   letter-spacing: 0.01em;
   line-height: 14pt;
   font-smooth: always;
-  color: rgba(0, 0, 0, 0.6);
+  color: white;
   text-align: left;
+  background-color: #e3a21a;
 }
 table thead tr th.right,
 table thead tr td.right {
@@ -3568,7 +3582,7 @@ table tbody tr {
 table tbody tr td {
   font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 300;
-  font-size: 11pt;
+  font-size: 0.5rem;
   letter-spacing: 0.02em;
   line-height: 20px;
   font-smooth: always;
@@ -3601,7 +3615,7 @@ table tbody tr.warning {
   background-color: #e3a21a !important;
 }
 table tbody tr.info {
-  background-color: #2d89ef !important;
+  background-color: white !important;
 }
 table tbody tr.info td,
 table tbody tr.warning td,
@@ -3609,6 +3623,12 @@ table tbody tr.error td,
 table tbody tr.success td {
   color: #ffffff !important;
 }
+
+table tbody tr.info td {
+    color: #000000 !important;
+}
+
+
 table tbody tr.selected-row {
   background-color: rgba(28, 183, 236, 0.1) !important;
 }

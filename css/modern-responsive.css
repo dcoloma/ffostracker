@@ -78,7 +78,6 @@
 .bg-color-blueFxoslight{
   background-color: #B2F2FF !important;
 }
-
 .bg-color-green {
   background-color: #00a300 !important;
 }
@@ -94,19 +93,15 @@
 .bg-color-greenFxoslight{
   background-color: #5F9B0A !important;
 }
-
 .bg-color-red {
   background-color: #b91d47 !important;
 }
-
 .bg-color-redDark {
   background-color: #820000 !important;
 }
-
 .bg-color-redFxos {
   background-color: #B90000 !important;
 }
-
 .bg-color-yellow {
   background-color: #ffc40d !important;
 }
@@ -563,10 +558,10 @@
     margin-left: 0;
   }
   table thead tr th {
-    font-size: 9pt;
+    font-size: 0.6rem;
   }
   table tbody tr td {
-    font-size: 10pt;
+    font-size: 0.4rem;
   }
   h1 {
     font-size: 30pt;
