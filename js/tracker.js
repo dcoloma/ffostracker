@@ -271,7 +271,7 @@ function readFromLS()
             addRow(parts[2], parts[1], value)
           }
           else { 
-            c = document.getElementById("key");
+            c = document.getElementById(key);
             if (c != null) {
               if (value != null)
                 document.getElementById(key).innerHTML = "<h1>"+value+"</h1>"; 
