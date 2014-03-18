@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Fri Mar 14 02:22:08 UTC 2013
+# Tue Mar 18 02:22:08 UTC 2013
 
 
 # cache all of these
@@ -13,7 +13,6 @@ app.json
 # js/*.js
 js/add2home.js
 js/async_storage.js
-js/bugzilla.js
 js/firebase.js
 js/jquery-1.9.0.min.js
 js/tracker.js
@@ -28,6 +27,7 @@ images/Firefox-all.png
 images/Firefox-develop.png
 images/Firefox-plan.png
 images/Firefox-stable.png
+images/Firefox-stablet.png
 
 # fonts/*
 fonts/iconFont.eot
