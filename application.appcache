@@ -1,13 +1,12 @@
 CACHE MANIFEST
-# Tue Mar 18 02:22:08 UTC 2013
-
+# Fri Mar 14 02:22:08 UTC 2015
 
 # cache all of these
 CACHE:
 
 # auto-generated file list
 # *.html
-home.html
+index.html
 app.json
 
 # js/*.js
@@ -19,20 +18,20 @@ js/tracker.js
 
 # css/*.css
 css/add2home.css
-css/modern-responsive.css
-css/modern.css
+css/ffostracker.css
 
 # images/*
 images/Firefox-all.png
 images/Firefox-develop.png
 images/Firefox-plan.png
 images/Firefox-stable.png
-images/Firefox-stablet.png
 
 # fonts/*
 fonts/iconFont.eot
 fonts/iconFont.svg
 fonts/iconFont.ttf
 fonts/iconFont.woff
-fonts/license.txt
 # end of auto-generated file list
+#
+NETWORK:
+*
